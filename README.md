@@ -79,16 +79,39 @@ For self learning, I used [Laravel testing series](https://laracasts.com/series/
 
 <hr><br>
 
+## Test rules
+
+- every methods should start with `test` prefix or comment above `/** @test */`
+- every methods should be named - how they work inside (like a documentation)
+
 ##Usable methods for browser tests
 
 | method  | description |  explanation |
 | ------- |:-----------:| ------------:|
+| visit | visit the site page | exact url |
 | clickLink | click the link | Click to text in the link |
 | assertPathIs | check route path | without site url (http://somesite.com/) |
 | assertUrlIs | check full path | with site url |
 | assertSee | check if see it on page | exactly text |
 
 <hr><br>
+
+#Usable methods for unit tests
+
+| method  | description |  explanation |
+| ------- |:-----------:| ------------:|
+| assertEquals | check if two parameters are equals | === |
+
+
+<hr><br>
+
+#additional functions for tests
+
+Like a __construct, but for tests: 
+
+     public function setUp(): void
+
+
 # P.S
 
 ## legend (notices)
