@@ -84,6 +84,10 @@
                     Laravel
                 </div>
 
+                <div class="title m-b-md">
+                    <a href="{{route('feedback')}}">Click me</a>
+                </div>
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>

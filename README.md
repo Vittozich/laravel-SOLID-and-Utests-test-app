@@ -79,6 +79,16 @@ For self learning, I used [Laravel testing series](https://laracasts.com/series/
 
 <hr><br>
 
+##Usable methods for browser tests
+
+| method  | description |  explanation |
+| ------- |:-----------:| ------------:|
+| clickLink | click the link | Click to text in the link |
+| assertPathIs | check route path | without site url (http://somesite.com/) |
+| assertUrlIs | check full path | with site url |
+| assertSee | check if see it on page | exactly text |
+
+<hr><br>
 # P.S
 
 ## legend (notices)
