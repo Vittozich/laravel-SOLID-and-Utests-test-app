@@ -84,6 +84,8 @@ For self learning, I used [Laravel testing series](https://laracasts.com/series/
 - every methods should start with `test` prefix or comment above `/** @test */`
 - every methods should be named - how they work inside (like a documentation)
 
+<hr><br>
+
 ##Usable methods for browser tests
 
 | method  | description |  explanation |
@@ -101,6 +103,7 @@ For self learning, I used [Laravel testing series](https://laracasts.com/series/
 | method  | description |  explanation |
 | ------- |:-----------:| ------------:|
 | assertEquals | check if two parameters are equals | === |
+| assertCount | check if count(second parameter) are equal to first parameter | 2 === 2 instead 2 === count([1,2])|
 
 
 <hr><br>
