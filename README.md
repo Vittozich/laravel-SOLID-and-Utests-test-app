@@ -31,11 +31,12 @@ Do not forget create the table in database named as `laratest`
 
 ### laravel base settings:
  
-In mySql I created empty DB `larareact` with `utf8mb4_unicode_ci`
+In mySql I created empty DB `larareact` and `laratest_testing` with `utf8mb4_unicode_ci`
 
 In `.env`:    
 
         DB_DATABASE=laratest    
+        DB_DATABASE_TESTING=laratest_testing
 
   Then (now it's not needed): 
 
@@ -138,7 +139,7 @@ Like a __construct, but for tests:
 
 Delete string  `<server name="DB_DATABASE" value=":memory:"/>` 
 
-and configurate `DB_CONNECTION` as `mysql` 
+and configurate `DB_CONNECTION` as `mysql_testing` (or `mysql` if you want to test on production database)
 <hr>
 
 #Fast commands
@@ -156,6 +157,10 @@ Migrate:
 or with steps (1 step = 1 migration):
 
     php artisan migrate --step
+    
+Migrate for testing database (copy of real database):
+    
+        php artisan migrate --database=mysql_testing --step
     
 #How to use `tinker`
 
