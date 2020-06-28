@@ -101,6 +101,7 @@ and so on need to use copy of database only with empty data!!!
 
 
 <hr><br>
+
 ##Usable methods for browser tests
 
 | method  | description |  explanation or example |
@@ -119,6 +120,17 @@ and so on need to use copy of database only with empty data!!!
 | ------- |:-----------:| ------------:|
 | assertEquals | check if two parameters are equals | === |
 | assertCount | check if count(second parameter) are equal to first parameter | 2 === 2 instead 2 === count([1,2])|
+
+<hr><br>
+
+##Usable methods for integration and model tests
+
+| method  | description |  explanation or example |
+| ------- |:-----------:| ------------:|
+| expectException | check method throw new Exception  | ethod should called before the line in the test where this exception should appear |
+| expectExceptionMessage | check if method throw new Exception with exact message | method should called before the line in the test where this exception should appear|
+
+<hr><br>
 
 ##Factories methods for integration and model tests
 
@@ -158,9 +170,12 @@ or with steps (1 step = 1 migration):
 
     php artisan migrate --step
     
-Migrate for testing database (copy of real database):
+Migrate for testing database (copy of real database first time):
     
         php artisan migrate --database=mysql_testing --step
+        
+! NOTE - after create `mysql_testing` every command ` php artisan migrate ` migration occur in both tables.
+(but that doesn't work correctly sometimes)
     
 #How to use `tinker`
 
@@ -176,7 +191,7 @@ To do an action (clear the table) at model and database (example Article model):
 
 ## Notes for myself:
 
-
+don't forget `return` in models methods, which are used inside the model or in test/controllers 
 
 ctrl+alt+n - fast navigation
 
