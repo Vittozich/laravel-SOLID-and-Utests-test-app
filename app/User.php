@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function leaveTeam()
+    {
+        $this->team_id = null;
+        $this->save();
+        return $this;
+    }
 }
