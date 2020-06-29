@@ -90,6 +90,8 @@ For self learning, I used [Laravel testing series](https://laracasts.com/series/
 - if you test models you need use `factories`
 - if you need (but you really need) clear (refresh) database after each test need to `use RefreshDatabase;` 
 in test class with use requirement above class `use Illuminate\Foundation\Testing\RefreshDatabase;`
+- check logic of the methods and create regression test to testing mistakes and errors.
+
 <hr><br>
 
 ## Mistakes and disgusting in laravel tests

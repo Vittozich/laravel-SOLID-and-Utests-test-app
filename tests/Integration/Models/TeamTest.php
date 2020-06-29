@@ -51,10 +51,23 @@ class TeamTest extends TestCase
 
         $this->assertEquals(2, $team->count());
 
+        $userThree = factory(User::class)->create();
         $this->expectException('Exception');
         $this->expectExceptionMessage('team is full');
-        $userThree = factory(User::class)->create();
         $team->add($userThree);
+
+    }
+
+    /** @test  this is the regression test */
+    public function when_adding_many_members_at_once_you_still_may_not_exceed_the_team_maximum_size()
+    {
+        $team = factory(Team::class)->create(['size' => 2]);
+
+        $users = factory(User::class,3)->create();
+
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('team is full');
+        $team->add($users);
 
     }
 

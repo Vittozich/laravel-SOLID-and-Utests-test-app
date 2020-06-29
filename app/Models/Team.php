@@ -9,18 +9,18 @@ class Team extends Model
 {
     protected $fillable = ['name', 'size'];
 
-    public function add($user)
+    public function add($users)
     {
 
-        $this->guardAgainstTooManyMembers();
+        $this->guardAgainstTooManyMembers($users);
 
-        $method = $user instanceof User ? 'save' : 'saveMany';
+        $method = $users instanceof User ? 'save' : 'saveMany';
 
-        if ($user instanceof User) {
-            return $this->members()->$method($user);
+        if ($users instanceof User) {
+            return $this->members()->$method($users);
         }
 
-        $this->members()->$method($user);
+        $this->members()->$method($users);
     }
 
     public function members()
@@ -46,12 +46,6 @@ class Team extends Model
 
     public function removeMany($users){
 
-        //todo template
-        // slow methods
-//        $users->each(function ($user){
-//            $user->leaveTeam();
-//        });
-
         return $this->members()
             ->whereIn('id',$users->pluck('id'))->update(['team_id'=>null]);
     }
@@ -61,11 +55,18 @@ class Team extends Model
         return  $this->members()->update(['team_id' => null]);
     }
 
+    public function maximumSize()
+    {
+        return $this->size;
+    }
+
     //local methods
 
-    protected function guardAgainstTooManyMembers()
+    protected function guardAgainstTooManyMembers($users)
     {
-        if ($this->count() >= $this->size) {
+        $numUsersToAdd = ($users instanceof User) ? 1 : count($users);
+        $newTeamCount = $this->count() + $numUsersToAdd;
+        if ($newTeamCount > $this->maximumSize()) {
             throw new \Exception('team is full');
         }
     }
