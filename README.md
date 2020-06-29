@@ -60,7 +60,7 @@ In `.env`:
 
 #Tests
 
-##Installation
+##vInstallation
 
     composer require --dev laravel/dusk
     php artisan dusk:install
@@ -108,10 +108,10 @@ and so on need to use copy of database only with empty data!!!
 
 <hr><br>
 
-##Usable methods for browser tests
+## Usable methods for browser tests
 
 | method  | description |  explanation or example |
-| ------- |:-----------:| ------------:|
+| ------- |:-----------:| -----------------------:|
 | visit | visit the site page | exact url |
 | clickLink | click the link | Click to text in the link |
 | assertPathIs | check route path | without site url (http://somesite.com/) |
@@ -120,19 +120,19 @@ and so on need to use copy of database only with empty data!!!
 
 <hr><br>
 
-##Usable methods for unit tests (and all tests in particular)
+## Usable methods for unit tests (and all tests in particular)
 
 | method  | description |  explanation or example |
-| ------- |:-----------:| ------------:|
+| ------- |:-----------:| -----------------------:|
 | assertEquals | check if two parameters are equals | === |
 | assertCount | check if count(second parameter) are equal to first parameter | 2 === 2 instead 2 === count([1,2])|
 
 <hr><br>
 
-##Usable methods for integration and model tests (and all tests in particular)
+## Usable methods for integration and model tests (and all tests in particular)
 
 | method  | description |  explanation or example |
-| ------- |:-----------:| ------------:|
+| ------- |:-----------:| -----------------------:|
 | expectException | check method throw new Exception  | ethod should called before the line in the test where this exception should appear |
 | expectExceptionMessage | check if method throw new Exception with exact message | method should called before the line in the test where this exception should appear|
 | assertDatabaseHas(table_name, array_data) | what should to see in database  | old method is seeInDatabase |
@@ -140,36 +140,36 @@ and so on need to use copy of database only with empty data!!!
 | assertTrue | variable inside should be true  | === true |
 | assertFalse| variable inside should be false  | === false |
 
-##Usable methods for all tests
 
 <hr><br>
 
-##Factories methods for integration and model tests
+## Factories methods for integration and model tests
 
 | method ($faker->*) | description |  explanation or example |
-| ------- |:-----------:| ------------:|
+| ------------------ |:-----------:| -----------------------:|
 | sentence | random short sentence | Nostrum consequatur molestiae aliquid quae eos sit. |
 | paragraph | random long sentence as paragraph| can be bigger than 255 symbols (this is a text, but not a string) |
 
 
 <hr><br>
 
-##additional functions for tests
+## additional functions for tests
 
 Like a __construct, but for tests: 
 
      public function setUp(): void
 
-##phpunit settings in `phpunit.xml`
+## phpunit settings in `phpunit.xml`
 
 Delete string  `<server name="DB_DATABASE" value=":memory:"/>` 
 
 and configurate `DB_CONNECTION` as `mysql_testing` (or `mysql` if you want to test on production database)
+
 <hr>
 
-#Fast commands
+# Fast commands
 
-##create models
+## create models
 
 Console method create a model in the folder
 
@@ -190,7 +190,7 @@ Migrate for testing database (copy of real database first time):
 ! NOTE - after create `mysql_testing` every command ` php artisan migrate ` migration occur in both tables.
 (but that doesn't work correctly sometimes)
     
-#How to use `tinker`
+# How to use `tinker`
 
 To start command line:
     
