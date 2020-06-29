@@ -53,6 +53,10 @@ In `.env`:
         
 <hr>
 
+### Polymorphic Relationships:
+
+- template: instead of `post_id` use `likeable_id` and `likeable_type`, where `likeable_type` taken from `get_class($post)` function, where `$post` is instanceof `Post::class`   
+- use `get_class()` to get second argument (class name with namespace) of polymorphic relationship (we know the first argument is `id` of class)
 
 #Tests
 
@@ -116,7 +120,7 @@ and so on need to use copy of database only with empty data!!!
 
 <hr><br>
 
-##Usable methods for unit tests
+##Usable methods for unit tests (and all tests in particular)
 
 | method  | description |  explanation or example |
 | ------- |:-----------:| ------------:|
@@ -125,12 +129,18 @@ and so on need to use copy of database only with empty data!!!
 
 <hr><br>
 
-##Usable methods for integration and model tests
+##Usable methods for integration and model tests (and all tests in particular)
 
 | method  | description |  explanation or example |
 | ------- |:-----------:| ------------:|
 | expectException | check method throw new Exception  | ethod should called before the line in the test where this exception should appear |
 | expectExceptionMessage | check if method throw new Exception with exact message | method should called before the line in the test where this exception should appear|
+| assertDatabaseHas(table_name, array_data) | what should to see in database  | old method is seeInDatabase |
+| assertDatabaseMissing(table_name, array_data) | what should not to see in database  | old method is notSeeInDatabase |
+| assertTrue | variable inside should be true  | === true |
+| assertFalse| variable inside should be false  | === false |
+
+##Usable methods for all tests
 
 <hr><br>
 
@@ -139,6 +149,7 @@ and so on need to use copy of database only with empty data!!!
 | method ($faker->*) | description |  explanation or example |
 | ------- |:-----------:| ------------:|
 | sentence | random short sentence | Nostrum consequatur molestiae aliquid quae eos sit. |
+| paragraph | random long sentence as paragraph| can be bigger than 255 symbols (this is a text, but not a string) |
 
 
 <hr><br>
@@ -193,7 +204,12 @@ To do an action (clear the table) at model and database (example Article model):
 
 ## Notes for myself:
 
-don't forget `return` in models methods, which are used inside the model or in test/controllers 
+- don't forget `return` in models methods, which are used inside the model or in test/controllers 
+- `scopeSomeName` - it is static/normal method, which can call as a static `::` if it is a first calling method,
+ then called with `->` and it's name would be `SomeName`
+- getSomeNameAttribute - it is custom attribute, which would called like that `$this->someName`  or `$this->some_name`
+(without `()` at the end, because it is not a method) (second option is more correct)
+
 
 ctrl+alt+n - fast navigation
 
