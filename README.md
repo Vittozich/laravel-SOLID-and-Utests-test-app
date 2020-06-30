@@ -95,6 +95,7 @@ For self learning, I used [Laravel testing series](https://laracasts.com/series/
 - if you need (but you really need) clear (refresh) database after each test need to `use RefreshDatabase;` 
 in test class with use requirement above class `use Illuminate\Foundation\Testing\RefreshDatabase;`
 - check logic of the methods and create regression test to testing mistakes and errors.
+- you can get out method and protected attributes to parent and make code cleaner.
 
 <hr><br>
 
@@ -159,11 +160,24 @@ Like a __construct, but for tests:
 
      public function setUp(): void
 
+and inside this method should be call the parent same method:
+
+      parent::setUp();      
+
+<hr>
+
 ## phpunit settings in `phpunit.xml`
 
 Delete string  `<server name="DB_DATABASE" value=":memory:"/>` 
 
 and configurate `DB_CONNECTION` as `mysql_testing` (or `mysql` if you want to test on production database)
+
+<hr>
+
+## additional settings or features for make tests cleaner
+
+- you can create global php function as helper for tests in some file. But you need to include this file in
+`composer.json` in `autoload-dev` in `files` array, then you have to `composer dumputoload` command to connect this file to laravel.
 
 <hr>
 
