@@ -60,7 +60,7 @@ In `.env`:
 
 #Tests
 
-##vInstallation
+## Installation
 
     composer require --dev laravel/dusk
     php artisan dusk:install
@@ -83,6 +83,8 @@ If you used phpstorm you can just run it from code
 <hr>
 
 For self learning, I used [Laravel testing series](https://laracasts.com/series/phpunit-testing-in-laravel)
+
+There are in `App/Classes` folder contains classes which testing without database and laravel framework (eloquent), they test in `Unit` testing folder.
 
 <hr><br>
 
@@ -127,6 +129,7 @@ and so on need to use copy of database only with empty data!!!
 | ------- |:-----------:| -----------------------:|
 | assertEquals | check if two parameters are equals | === |
 | assertCount | check if count(second parameter) are equal to first parameter | 2 === 2 instead 2 === count([1,2])|
+| assertRegExp | check if second argument (string) is satisfies regular expression in first argument  | assert regular expression is work for string, you have to use `preg_quote()` to quote symbols in query or value  |
 
 <hr><br>
 
@@ -154,6 +157,8 @@ and so on need to use copy of database only with empty data!!!
 
 <hr><br>
 
+# Help information, and some necessary information to work with tests 
+
 ## additional functions for tests
 
 Like a __construct, but for tests: 
@@ -163,6 +168,22 @@ Like a __construct, but for tests:
 and inside this method should be call the parent same method:
 
       parent::setUp();      
+
+<hr>
+
+## php usable functions
+
+- preg_quote() - Quote regular expression characters  `\ + * ? [ ^ ] $ ( ) { } = ! < > | : - #`
+
+<hr>
+
+## file `App/Classes/Expression` contains CHAIN call methods inside. 
+
+The first method is static to start the chain of methods and to call class methods without `new`. (just `return new static;` in `make` method )
+
+To chain method works need to return the instance (object) of class instead of string or something else returned and break the chain. 
+
+You have to return `$this` in every chain methods.
 
 <hr>
 
@@ -220,7 +241,7 @@ To do an action (clear the table) at model and database (example Article model):
 
 - don't forget `return` in models methods, which are used inside the model or in test/controllers 
 - `scopeSomeName` - it is static/normal method, which can call as a static `::` if it is a first calling method,
- then called with `->` and it's name would be `SomeName`
+ then called with `->` and it's name would be `SomeName` (its works for models, not for just classes)
 - getSomeNameAttribute - it is custom attribute, which would called like that `$this->someName`  or `$this->some_name`
 (without `()` at the end, because it is not a method) (second option is more correct)
 
