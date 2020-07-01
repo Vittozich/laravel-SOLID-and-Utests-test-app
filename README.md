@@ -174,6 +174,19 @@ and inside this method should be call the parent same method:
 ## php usable functions
 
 - preg_quote() - Quote regular expression characters  `\ + * ? [ ^ ] $ ( ) { } = ! < > | : - #`
+- get_class_methods() - get methods of the class
+
+<hr>
+
+## local mail sending
+
+in  `.env`
+
+    MAIL_MAILER=log
+    
+### Generating Mailables
+
+    php artisan make:mail SomeMailName
 
 <hr>
 

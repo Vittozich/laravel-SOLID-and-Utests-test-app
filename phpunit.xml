@@ -17,6 +17,9 @@
         <testsuite name="Models">
             <directory suffix="Test.php">./tests/Integration/Models</directory>
         </testsuite>
+        <testsuite name="Mail">
+            <directory suffix="Test.php">./tests/Mail</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
