@@ -19,3 +19,8 @@ Route::get('/', function () {
 
 
 Route::get('feedback', ['as' => 'feedback', 'uses' => 'Tests\BrowserTestController@feedback']);
+
+
+Route::post('books', ['as' => 'books.store', 'uses' => 'Tests\BooksController@store']);
+
+Route::put('books/{book}', ['as' => 'books.update', 'uses' => 'Tests\BooksController@update']);

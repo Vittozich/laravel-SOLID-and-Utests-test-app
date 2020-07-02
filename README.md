@@ -111,6 +111,14 @@ and so on need to use copy of database only with empty data!!!
 
 <hr><br>
 
+## Usable main methods
+
+| method  | description |  explanation or example |
+| ------- |:-----------:| -----------------------:|
+| withoutExceptionHandling | disable the exceptions | show real error in code (sometimes it is better then exceptions, especially when testing routes and API ) |
+
+<hr><br>
+
 ## Usable methods for browser tests
 
 | method  | description |  explanation or example |
@@ -137,12 +145,21 @@ and so on need to use copy of database only with empty data!!!
 
 | method  | description |  explanation or example |
 | ------- |:-----------:| -----------------------:|
-| expectException | check method throw new Exception  | ethod should called before the line in the test where this exception should appear |
+| expectException | check method throw new Exception  | method should called before the line in the test where this exception should appear |
 | expectExceptionMessage | check if method throw new Exception with exact message | method should called before the line in the test where this exception should appear|
 | assertDatabaseHas(table_name, array_data) | what should to see in database  | old method is seeInDatabase |
 | assertDatabaseMissing(table_name, array_data) | what should not to see in database  | old method is notSeeInDatabase |
 | assertTrue | variable inside should be true  | === true |
 | assertFalse| variable inside should be false  | === false |
+
+<hr><br>
+
+## Usable methods for feature tests (and all tests in particular)
+
+| method  | description |  explanation or example |
+| ------- |:-----------:| -----------------------:|
+| assertSessionHasErrors | check if validation has an error  | param in this method is which error name should be |
+
 
 
 <hr><br>
@@ -251,12 +268,11 @@ or with steps (1 step = 1 migration):
 
     php artisan migrate --step
     
-Migrate for testing database (copy of real database first time):
+Migrate for testing database (copy of real database first time, then it recreates each test with `RefreshDatabase` ):
     
         php artisan migrate --database=mysql_testing --step
         
-! NOTE - after create `mysql_testing` every command ` php artisan migrate ` migration occur in both tables.
-(but that doesn't work correctly sometimes)
+! NOTE when you use trait `RefreshDatabase` testing database autorefreshing each test, even You change migration.
     
 # How to use `tinker`
 
