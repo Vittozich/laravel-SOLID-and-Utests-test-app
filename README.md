@@ -175,6 +175,9 @@ and inside this method should be call the parent same method:
 
 - preg_quote() - Quote regular expression characters  `\ + * ? [ ^ ] $ ( ) { } = ! < > | : - #`
 - get_class_methods() - get methods of the class
+- is_object($item) - test if $item is object (this is popular method, but I wrote it's here because it can be used instead of `instanceof` someClass ant together with `method_exists` )
+- method_exists($item,'methodName') - test if object(class) `$item` has a method `methodName`
+- implode - array to string (each element . next element)
 
 <hr>
 
@@ -190,13 +193,30 @@ in  `.env`
 
 <hr>
 
-## file `App/Classes/Expression` contains CHAIN call methods inside. 
+## file `App/Classes/Expression` contains CHAIN (as example for projects) call methods inside. 
 
 The first method is static to start the chain of methods and to call class methods without `new`. (just `return new static;` in `make` method )
 
 To chain method works need to return the instance (object) of class instead of string or something else returned and break the chain. 
 
 You have to return `$this` in every chain methods.
+
+<hr>
+
+## file `Tests/Unit/DigginDipperUnitTest.php` contains PROPHECY as example
+
+To create new directive or observer need to:
+    
+     $directive = $this->prophesize(CLassName::class);
+
+now You can mock calling methods with parameters ans returns:
+
+    $directive->foo('bar')->shouldBeCalled()->willReturn('foobar'); 
+
+and assert the response:
+
+     $response = $directive->reveal()->foo('bar');
+     $this->assertEquals('foobar', $response);
 
 <hr>
 
