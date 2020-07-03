@@ -11,13 +11,29 @@ class BooksController extends Controller
 
     public function store(Request $request)
     {
-        Book::create($this->validateRequest($request));
+        $book = Book::create($this->validateRequest($request));
+
+        return $book->show();
     }
 
     public function update(Book $book, Request $request)
     {
         $book->update($this->validateRequest($request));
+
+        return $book->show();
     }
+
+    public function destroy(Book $book,Request $request)
+    {
+        $book->delete();
+
+        return $book->index();
+    }
+
+    /*
+     *
+     * protected functions */
+
 
     protected function validateRequest($request)
     {
@@ -29,4 +45,5 @@ class BooksController extends Controller
         return $request->validate($validate_rules);
 
     }
+
 }

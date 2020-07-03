@@ -26,9 +26,11 @@ class BooksRoutesTest extends TestCase
             'author' => 'Viktor'
         ]);
 
-        $response->assertStatus(200);
 
         $this->assertCount(1, Book::all());
+        $book_id = Book::first()->id;
+
+        $response->assertRedirect('books/'.$book_id);
     }
 
     /** @test */
@@ -69,6 +71,26 @@ class BooksRoutesTest extends TestCase
 
         $this->assertEquals('new_one',Book::first()->title);
         $this->assertEquals('new_onea_a',Book::first()->author);
+
+        $response->assertRedirect('books/'.$book_id);
+    }
+
+    /** @test */
+    public function a_book_can_be_deleted()
+    {
+        $this->post('/books', [
+            'title' => '123',
+            'author' => '321'
+        ]);
+
+        $book = Book::first();
+
+        $response = $this->delete('books/'.$book->id);
+
+        $this->assertCount(0, Book::all());
+
+        $response->assertRedirect('books');
+
 
     }
 }

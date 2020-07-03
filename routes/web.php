@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::get('feedback', ['as' => 'feedback', 'uses' => 'Tests\BrowserTestController@feedback']);
 
 
-Route::post('books', ['as' => 'books.store', 'uses' => 'Tests\BooksController@store']);
-
-Route::put('books/{book}', ['as' => 'books.update', 'uses' => 'Tests\BooksController@update']);
+Route::resource('books','Tests\BooksController' );
+//
+//Route::get('books', ['as' => 'books', 'uses' => 'Tests\BooksController@index']);
+//Route::post('books', ['as' => 'books.store', 'uses' => 'Tests\BooksController@store']);
+//Route::put('books/{book}', ['as' => 'books.update', 'uses' => 'Tests\BooksController@update']);
+//Route::delete('books/{book}', ['as' => 'books.destroy', 'uses' => 'Tests\BooksController@destroy']);

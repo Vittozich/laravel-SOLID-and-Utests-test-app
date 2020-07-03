@@ -159,7 +159,7 @@ and so on need to use copy of database only with empty data!!!
 | method  | description |  explanation or example |
 | ------- |:-----------:| -----------------------:|
 | assertSessionHasErrors | check if validation has an error  | param in this method is which error name should be |
-
+| assertRedirect | check if method call redirect to url | exact url |
 
 
 <hr><br>
@@ -293,7 +293,8 @@ To do an action (clear the table) at model and database (example Article model):
  then called with `->` and it's name would be `SomeName` (its works for models, not for just classes)
 - getSomeNameAttribute - it is custom attribute, which would called like that `$this->someName`  or `$this->some_name`
 (without `()` at the end, because it is not a method) (second option is more correct)
-
+- show the route list `php artisan route:list`
+    
 
 ctrl+alt+n - fast navigation
 
